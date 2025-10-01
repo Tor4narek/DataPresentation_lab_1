@@ -311,12 +311,12 @@ public class MyList<T> where T : IEquatable<T>
         
         while (current != -1)
         {
-            if (current == index) return previous;
+            if (current == index)  return previous;
             previous = current;
             current = _nodes[current].Next;
         }
 
-        throw new PositionException("Данная позиция не существует.");
+        return -1;
     }
     
     /// <summary>
@@ -352,6 +352,11 @@ public class MyList<T> where T : IEquatable<T>
     private int CheckPosition(int position)
     {
         var previous = Before(position);
+        if (position < 0 && (position != _start || previous == -1))
+        {
+            throw new PositionException("Данная позиция не существует!");
+        }
+        
         return previous;
     }
 }
