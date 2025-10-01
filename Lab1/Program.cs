@@ -1,4 +1,4 @@
-﻿using Lab1.DoubleLinked;
+﻿using Lab1.CursorList;
 
 namespace Lab1;
 
@@ -30,20 +30,22 @@ public class Program
     private static void FillList(MyList<Recipient> list)
     {
         list.Insert(list.End(), new Recipient("Антон Смирнов", "Калуга, ул. Московская 12"));
-        list.Insert(list.End(), new Recipient("Екатерина Иванова", "Сочи, ул. Виноградная 5"));
-        list.Insert(list.End(), new Recipient("Петр Петров", "Тверь, пр. Ленина 7"));
-        list.Insert(list.End(), new Recipient("Марина Соколова", "Владивосток, ул. Светланская 21"));
-        list.Insert(list.End(), new Recipient("Игорь Кузнецов", "Тюмень, ул. Мира 10"));
-        list.Insert(list.End(), new Recipient("Анна Морозова", "Краснодар, ул. Красная 20"));
-        list.Insert(list.End(), new Recipient("Екатерина Иванова", "Сочи, ул. Виноградная 5")); // Повторение
-        list.Insert(list.End(), new Recipient("Сергей Лебедев", "Ярославль, ул. Свободы 18"));
-        list.Insert(list.End(), new Recipient("Ольга Федорова", "Ижевск, ул. Пушкина 3"));
-        list.Insert(list.End(), new Recipient("Игорь Кузнецов", "Тюмень, ул. Мира 10")); // Повторение
-        list.Insert(list.End(), new Recipient("Наталья Орлова", "Уфа, ул. Октябрьской революции 14"));
-        list.Insert(list.End(), new Recipient("Владислав Романов", "Киров, ул. Ленина 12"));
-        list.Insert(list.End(), new Recipient("Марина Соколова", "Владивосток, ул. Светланская 21")); // Повторение
-        list.Insert(list.End(), new Recipient("Тимур Ахметов", "Саратов, ул. Московская 22"));
-        list.Insert(list.End(), new Recipient("Александра Белова", "Ростов-на-Дону, ул. Большая Садовая 5"));
+        list.Insert(list.End(), new Recipient("Антон Смирнов", "Калуга, ул. Московская 12"));
+        list.Insert(list.End(), new Recipient("Антон Смирнов", "Калуга, ул. Московская 12"));
+        // list.Insert(list.End(), new Recipient("Екатерина Иванова", "Сочи, ул. Виноградная 5"));
+        // list.Insert(list.End(), new Recipient("Петр Петров", "Тверь, пр. Ленина 7"));
+        // list.Insert(list.End(), new Recipient("Марина Соколова", "Владивосток, ул. Светланская 21"));
+        // list.Insert(list.End(), new Recipient("Игорь Кузнецов", "Тюмень, ул. Мира 10"));
+        // list.Insert(list.End(), new Recipient("Анна Морозова", "Краснодар, ул. Красная 20"));
+        // list.Insert(list.End(), new Recipient("Екатерина Иванова", "Сочи, ул. Виноградная 5")); // Повторение
+        // list.Insert(list.End(), new Recipient("Сергей Лебедев", "Ярославль, ул. Свободы 18"));
+        // list.Insert(list.End(), new Recipient("Ольга Федорова", "Ижевск, ул. Пушкина 3"));
+        // list.Insert(list.End(), new Recipient("Игорь Кузнецов", "Тюмень, ул. Мира 10")); // Повторение
+        // list.Insert(list.End(), new Recipient("Наталья Орлова", "Уфа, ул. Октябрьской революции 14"));
+        // list.Insert(list.End(), new Recipient("Владислав Романов", "Киров, ул. Ленина 12"));
+        // list.Insert(list.End(), new Recipient("Марина Соколова", "Владивосток, ул. Светланская 21")); // Повторение
+        // list.Insert(list.End(), new Recipient("Тимур Ахметов", "Саратов, ул. Московская 22"));
+        // list.Insert(list.End(), new Recipient("Александра Белова", "Ростов-на-Дону, ул. Большая Садовая 5"));
     }
 
     /// <summary>

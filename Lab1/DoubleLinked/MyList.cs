@@ -6,8 +6,6 @@
     /// <typeparam name="T"></typeparam>
     public class MyList<T> where T : IEquatable<T>
     {
-        #region Переменные
-        
         /// <summary>
         /// Первый элемент списка.
         /// </summary>
@@ -22,8 +20,6 @@
         /// Конец списка.
         /// </summary>
         private readonly PositionIndex<T> _end = new PositionIndex<T>(null);
-
-        #endregion
 
         /// <summary>
         /// Условный конец списка.
@@ -62,19 +58,17 @@
         /// <exception cref="PositionException">Выбрасывается, если <paramref name="positionIndex"/> не существует.</exception>
         public void Insert(PositionIndex<T> positionIndex, T value)
         {
-            // 1) Случай: пустой список
-            if (_head == null && _tail == null)
-            {
-                Node<T> newNode = new Node<T>(value); // создаём новый узел
-                _head = newNode;                       // этот узел становится головой
-                _tail = newNode;                       // и хвостом одновременно
-                
-                return;                                // вставка завершена
-            }
-
-            // 2) Случай: вставка в конец списка
             if (positionIndex == _end)
             {
+                if (_head == null)
+                {
+                    Node<T> newNode = new Node<T>(value); // создаём новый узел
+                    _head = newNode;                       // этот узел становится головой
+                    _tail = newNode;                       // и хвостом одновременно
+                
+                    return;                                // вставка завершена
+                }
+                
                 Node<T> newNodeAtEnd = new Node<T>(value, _tail, null); // новый узел после хвоста
                 UpdateNodes(_tail, newNodeAtEnd);                       // связываем с текущим хвостом
                 _tail = newNodeAtEnd;                                   // обновляем хвост
@@ -103,7 +97,7 @@
         /// Удаляет элемент в позиции <paramref name="positionIndex"/>.
         /// </summary>
         /// <remarks>
-        /// Проверяем существование позиции.
+        /// 
         /// 1) Если удаляем первый элемент:
         ///     Если список из одного элемента, делаем голову и хвост null.
         ///     Если в списке есть элементы, переносим head на следующую позицию,
@@ -111,14 +105,12 @@
         /// 2) Если удаляем хвост:
         ///     Переносим хвост на предыдущий,
         ///     Ссылка на следующий в новом хвосте null.
+        /// Проверяем существование позиции.
         /// 3) Переносим ссылки предыдущего на следующий, тем самым удаляя текущий. 
         /// </remarks>
         /// <param name="positionIndex">Позиция.</param>
-        /// <exception cref="PositionException">Выбрасывается, если позиции не существует.</exception>
         public void Delete(PositionIndex<T> positionIndex)
         {
-            ValidatePosition(positionIndex);
-
             if (positionIndex.Node == _head)
             {
                 if (_head == _tail)
@@ -144,7 +136,7 @@
 
                 return;
             }
-            
+            ValidatePosition(positionIndex);
             UpdateNodes(positionIndex.Node!.Previous!, positionIndex.Node!.Next!);
         }
         
@@ -197,7 +189,6 @@
         /// </remarks>
         /// <param name="positionIndex">Позиция.</param>
         /// <returns><see cref="PositionIndex{T}<T>"/>.</returns>
-        /// <exception cref="PositionException">Выбрасывается, если <paramref name="positionIndex"/> не существует.</exception>
         public PositionIndex<T> Next(PositionIndex<T> positionIndex)
         {
             ValidatePosition(positionIndex);

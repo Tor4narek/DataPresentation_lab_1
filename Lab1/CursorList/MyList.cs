@@ -114,11 +114,6 @@ public class MyList<T> where T : IEquatable<T>
     /// <exception cref="PositionException">Если позиция не существует.</exception>
     public void Insert(PositionIndex position, T value)
     {
-        if (_space == -1)
-        {
-            throw new InvalidOperationException("Список переполнен.");
-        }
-
         if (position.Position == -1) // вставка в конец
         {
             if (IsEmpty()) // список пуст
@@ -141,11 +136,9 @@ public class MyList<T> where T : IEquatable<T>
             return;
 
         }
-        if (!CheckPosition(position.Position))
-        {
-            throw new PositionException("Данная позиция не существует в списке");
-        }
-        
+
+        CheckPosition(position.Position);
+            
         int tmp = _space;
         _space = _nodes[_space].Next;
 
@@ -181,11 +174,6 @@ public class MyList<T> where T : IEquatable<T>
     /// <exception cref="PositionException">Если позиция отсутсвует в списке.</exception>
     public void Delete(PositionIndex position)
     {
-        if (position.Position < 0)
-        {
-            throw new PositionException("Данная позиция не существует в списке!");
-        }
-        
         int tmp;
 
         if (position.Position == _start)
@@ -198,12 +186,7 @@ public class MyList<T> where T : IEquatable<T>
             return;
         }
 
-        int previous = Before(position.Position);
-        
-        if (previous == -1)
-        {
-            throw new PositionException("Данная позиция не существует в списке!");
-        }
+        int previous = CheckPosition(position.Position);
         
         int current = _nodes[previous].Next;
         _nodes[previous].Next = _nodes[current].Next;
@@ -246,12 +229,9 @@ public class MyList<T> where T : IEquatable<T>
     /// <exception cref="ArgumentException"></exception>
     public T Retrieve(PositionIndex position)
     {
-        if (!CheckPosition(position.Position))
-        {
-            throw new ArgumentException("Данная позиция отсутствует в списке");
-        }
+        CheckPosition(position.Position);
 
-        return _nodes[position.Position].Data!;
+       return _nodes[position.Position].Data!;
     }
     
     /// <summary>
@@ -261,10 +241,7 @@ public class MyList<T> where T : IEquatable<T>
     /// <returns>PositionIndex.</returns>
     public PositionIndex Next(PositionIndex position)
     {
-        if (!CheckPosition(position.Position))
-        {
-            throw new PositionException("Данная позиция отсутствует в списке");
-        }
+        CheckPosition(position.Position);
         
         return _nodes[position.Position].Next == -1 
             ? _end 
@@ -278,9 +255,9 @@ public class MyList<T> where T : IEquatable<T>
     /// <returns>PositionIndex.</returns>
     public PositionIndex Previous(PositionIndex position)
     {
-        int prev = Before(position.Position);
+        int previous = CheckPosition(position.Position);
         
-        return new PositionIndex(prev);
+        return new PositionIndex(previous);
     }
 
     /// <summary>
@@ -326,6 +303,7 @@ public class MyList<T> where T : IEquatable<T>
     /// </summary>
     /// <param name="index">Индекс узла.</param>
     /// <returns><see cref="int"/>.</returns>
+    /// <exception cref="PositionException">Если, позиция не существует в списке.</exception>
     private int Before(int index)
     {
         int current = _start;
@@ -337,8 +315,8 @@ public class MyList<T> where T : IEquatable<T>
             previous = current;
             current = _nodes[current].Next;
         }
-        
-        return -1;
+
+        throw new PositionException("Данная позиция не существует.");
     }
     
     /// <summary>
@@ -370,15 +348,11 @@ public class MyList<T> where T : IEquatable<T>
     {
         return _start == -1;
     }
-    
-    /// <summary>
-    /// Проверяет существует ли позиция.
-    /// </summary>
-    /// <param name="index">Индекс позиции.</param>
-    /// <returns>Если существует, true, иначе false.</returns>
-    private bool CheckPosition(int index)
+
+    private int CheckPosition(int position)
     {
-        return index >= 0 && (index == _start || Before(index) != -1);
+        var previous = Before(position);
+        return previous;
     }
 }
 
