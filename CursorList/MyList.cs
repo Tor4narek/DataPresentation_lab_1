@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Lab1.CursorList;
+namespace CursorList;
 
 /// <summary>
 /// Список на курсорах.
@@ -360,5 +360,3 @@ public class MyList<T> where T : IEquatable<T>
         return previous;
     }
 }
-
-

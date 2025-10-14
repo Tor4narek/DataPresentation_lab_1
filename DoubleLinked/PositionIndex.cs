@@ -1,4 +1,4 @@
-﻿namespace Lab1.DoubleLinked;
+﻿namespace DoubleLinked;
 
 /// <summary>
 /// Позиция.

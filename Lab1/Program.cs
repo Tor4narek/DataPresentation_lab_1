@@ -1,4 +1,4 @@
-﻿using Lab1.CursorList;
+﻿using CursorList;
 
 namespace Lab1;
 

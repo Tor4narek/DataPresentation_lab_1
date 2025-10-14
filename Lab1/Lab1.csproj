@@ -7,4 +7,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CursorList\CursorList.csproj" />
+      <ProjectReference Include="..\DoubleLinked\DoubleLinked.csproj" />
+    </ItemGroup>
+
 </Project>

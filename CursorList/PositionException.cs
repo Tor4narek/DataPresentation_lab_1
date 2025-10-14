@@ -1,4 +1,4 @@
-﻿namespace Lab1;
+﻿namespace CursorList;
 
 public class PositionException : Exception
 {

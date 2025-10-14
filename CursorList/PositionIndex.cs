@@ -1,4 +1,4 @@
-﻿namespace Lab1.CursorList;
+﻿namespace CursorList;
 
 /// <summary>
 /// Позиция.
