@@ -1,5 +1,8 @@
 ﻿namespace AdtMap.LinkedArray
 {
+    /// <summary>
+    /// Узел.
+    /// </summary>
     public class Node
     {
         public char[] Key { get; set; } = new char[20];    // ключ фиксированной длины 20
