@@ -55,11 +55,12 @@ namespace AdtMap.LinkedArray
         public bool Compute(char[] key, ref char[] value)
         {
             Node node = null;
+            
             if (!GetNodeByKey(key, ref node))
             {
                 return false;
             }
-
+            
             value = node.Value;
             return true;
         }
