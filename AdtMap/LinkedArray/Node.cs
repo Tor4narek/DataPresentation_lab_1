@@ -8,13 +8,21 @@
 
         public Node(char[] key, char[] value, Node next)
         {
-            // Копируем ключ и дополняем '\0', если меньше 20
-            for (int i = 0; i < 20; i++)
-                Key[i] = i < key.Length ? key[i] : '\0';
+            int i = 0;
+            while (i < key.Length && i <= 20 && key[i] != '\0')
+            {
+                Key[i] = key[i];
+                i++;
+            }
 
-            // Копируем значение и дополняем '\0', если меньше 50
-            for (int i = 0; i < 50; i++)
-                Value[i] = i < value.Length ? value[i] : '\0';
+            // Копируем значение до терминального элемента или до длины массива 50
+            int j = 0;
+            while (j < value.Length && j <= 50 && value[j] != '\0')
+            {
+                Value[j] = value[j];
+                j++;
+            }
+                
 
             Next = next;
         }
