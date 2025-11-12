@@ -46,8 +46,15 @@ public class Recipient : IEquatable<Recipient>
     /// <returns>Возвращает <c>true</c>, если объекты равны, иначе <c>false</c>.</returns>
     public bool Equals(Recipient? other)
     {
-        if (other is null) return false;
-        if (ReferenceEquals(this, other)) return true;
+        if (other is null)
+        {
+            return false;
+        }
+
+        if (ReferenceEquals(this, other))
+        {
+            return true;
+        }
 
         for (int i = 0; i < Name.Length; i++)
         {
